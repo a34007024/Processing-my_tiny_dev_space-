@@ -11,6 +11,16 @@ class ball{
     xMoveSpeed = random(1,3);
     yMoveSpeed = random(2,5);
   }
+  ball(float in_x,float in_y){
+    x = in_x;
+    y = in_y;
+    r = int(random(30,80));
+    colorR = int(random(255));
+    colorG = int(random(255));
+    colorB = int(random(255));
+    xMoveSpeed = random(1,3);
+    yMoveSpeed = random(2,5);
+  }
   void ballDrop(){
     fill(colorR,colorG,colorB);
     ellipse(x,y,r,r);
