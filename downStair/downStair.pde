@@ -15,7 +15,7 @@ void setup(){
   platformNail = loadImage("images/platform-nail.png");
   platformRight = loadImage("images/platform-right.png");
   platformTrue = loadImage("images/platform-true.png");
-  size(436,640);//topNail.width + wall.width*2
+  size(436,640,P2D);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
 }
 
@@ -27,16 +27,19 @@ void draw(){
   
   if(keyPressed){
     if(keyCode == LEFT){
-      image(playerLeft,playerX,playerY);
-      image(playerLeftRun,playerX,playerY);
+      if(frameCount%10<=5)image(playerLeft,playerX,playerY);
+      else image(playerLeftRun,playerX,playerY);
+      if(playerX >= wall.width)playerX -= 3;
     }
     else if(keyCode == RIGHT){
-      image(playerRight,playerX,playerY);
-      image(playerRightRun,playerX,playerY);
+      if(frameCount%10<=5)image(playerRight,playerX,playerY);
+      else image(playerRightRun,playerX,playerY);
+      if(playerX + playerDefault.width <= width-wall.width)playerX += 3;
     }
   }
   else{
     image(playerDefault,playerX,playerY);
     
   }
+  if(playerY+playerDefault.height <= height)playerY += 3;//falling down
 }
