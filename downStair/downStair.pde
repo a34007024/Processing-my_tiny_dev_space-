@@ -20,7 +20,9 @@ void setup(){
   platformTrue = loadImage("images/platform-true.png");
   size(436,640,P2D);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
-  for(int i=0;i < p.length;i++){
+  p[0] = new platform(6,width/2-platformTrue.width/2,height);
+  //the start-up platform must be true platform and appear in the middle
+  for(int i=1;i < p.length;i++){
     p[i] = new platform(height + i*120);
   }
 }

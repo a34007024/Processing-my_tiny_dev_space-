@@ -20,6 +20,12 @@ class platform {
     platformX = random(wall.width, width-platformRight.width-wall.width);
     platformY = in_platformY;
   }
+  
+  platform(int in_platformType,float in_platformX,float in_platformY) {
+    platformType = in_platformType;
+    platformX = in_platformX;
+    platformY = in_platformY;
+  }
 
   void update() {
     switch (platformType) {
