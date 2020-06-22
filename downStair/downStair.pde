@@ -1,7 +1,8 @@
 PImage wall,topNail,playerDefault,playerLeft,playerLeftRun,playerRight,playerRightRun;
 PImage platformFake,platformJump,platformLeft,platformNail,platformRight,platformTrue;
-float playerX ,playerY = 50;
+float playerX ,playerY = 50,fallingSpeed = 3;
 boolean playerMoveLeft = false,playerMoveRight = false;
+int score = 0;
 platform[] p = new platform[20];
 void setup(){
   wall = loadImage("images/wall.png");
@@ -20,7 +21,7 @@ void setup(){
   size(436,640,P2D);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
   for(int i=0;i < p.length;i++){
-    p[i] = new platform(height + i*120);
+    p[i] = new platform(2 ,height + i*120);
   }
 }
 
@@ -48,7 +49,8 @@ void draw(){
     p[i].update();
     if(p[i].platformY <= -1750)p[i] = new platform();//renew the platform
   }
-  playerY += 3;//falling down
+  playerY += fallingSpeed;//falling down
+  if(fallingSpeed < 3)fallingSpeed += 0.3;
 }
 
 void keyPressed(){

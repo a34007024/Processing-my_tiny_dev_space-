@@ -1,4 +1,3 @@
-int score = 0;
 class platform {
   float platformX, platformY;
   int platformType;
@@ -8,13 +7,7 @@ class platform {
     platformType = int(random(6));
     platformX = random(wall.width, width-platformRight.width-wall.width);
     platformY = height;
-  }
-
-  platform(int in_platformType) {
-    platformType = in_platformType; 
-    platformX = random(wall.width, width-platformRight.width-wall.width);
-    platformY = height;
-  }
+  }  
 
   platform(float in_platformY) {
     platformType = int(random(6));
@@ -44,9 +37,8 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
-        fallingSpeed = -10;
+        fallingSpeed = -9;
       }
-      if(playerCollideOnPlatform)jump();
       image(platformJump, platformX, platformY);
       break;
     case 3:
