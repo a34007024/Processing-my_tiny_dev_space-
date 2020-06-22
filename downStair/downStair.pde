@@ -50,7 +50,7 @@ void draw(){
     if(p[i].platformY <= -1750)p[i] = new platform();//renew the platform
   }
   playerY += fallingSpeed;//falling down
-  if(fallingSpeed < 3)fallingSpeed += 0.3;
+  if(fallingSpeed < 9.8)fallingSpeed += 0.3;
 }
 
 void keyPressed(){

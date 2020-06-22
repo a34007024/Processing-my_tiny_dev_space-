@@ -29,6 +29,7 @@ class platform {
         if(framePassed > 15)playerCollideOnPlatform = true;
         if(!playerCollideOnPlatform){
           playerY = platformY - playerDefault.height-3;
+          fallingSpeed = 0;
         }
       }
       if(!playerCollideOnPlatform)image(platformFake, platformX, platformY);
@@ -37,6 +38,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
+        fallingSpeed = 0;
         fallingSpeed = -9;
       }
       image(platformJump, platformX, platformY);
@@ -45,6 +47,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
+        fallingSpeed = 0;
         playerX -= 2;
       }
       image(platformLeft, platformX, platformY);
@@ -53,6 +56,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
+        fallingSpeed = 0;
       }
       image(platformNail, platformX, platformY);
       break;
@@ -60,6 +64,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
+        fallingSpeed = 0;
         playerX += 2;
       }
       image(platformRight, platformX, platformY);
@@ -68,6 +73,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height - 3;
+        fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
       break;
@@ -75,6 +81,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-3;
+        fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
       break;
