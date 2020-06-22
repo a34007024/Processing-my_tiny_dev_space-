@@ -61,7 +61,7 @@ class platform {
     case 4:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-3;
+        playerY = platformY - playerDefault.height + 15;
         fallingSpeed = 0;
       }
       image(platformNail, platformX, platformY);
