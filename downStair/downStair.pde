@@ -21,7 +21,7 @@ void setup(){
   size(436,640,P2D);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
   for(int i=0;i < p.length;i++){
-    p[i] = new platform(2 ,height + i*120);
+    p[i] = new platform(height + i*120);
   }
 }
 
