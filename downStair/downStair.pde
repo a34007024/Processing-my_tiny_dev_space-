@@ -43,12 +43,12 @@ void draw(){
   else{
     image(playerDefault,playerX,playerY);
   }
-  if(playerY+playerDefault.height <= height)playerY += 3;//falling down
+  
   for(int i=0;i < p.length;i++){
     p[i].update();
     if(p[i].platformY <= -1700)p[i] = new platform();//renew the platform
   }
-  
+  playerY += 3;//falling down
 }
 
 void keyPressed(){
