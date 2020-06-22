@@ -46,7 +46,7 @@ void draw(){
   
   for(int i=0;i < p.length;i++){
     p[i].update();
-    if(p[i].platformY <= -1700)p[i] = new platform();//renew the platform
+    if(p[i].platformY <= -1750)p[i] = new platform();//renew the platform
   }
   playerY += 3;//falling down
 }

@@ -21,9 +21,9 @@ class platform {
     case 1:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         framePassed += 1;
-        if(framePassed > 30)playerCollideOnPlatform = true;
+        if(framePassed > 15)playerCollideOnPlatform = true;
         if(!playerCollideOnPlatform){
-          playerY = platformY - playerDefault.height;
+          playerY = platformY - playerDefault.height-3;
         }
       }
       if(!playerCollideOnPlatform)image(platformFake, platformX, platformY);
@@ -31,42 +31,44 @@ class platform {
     case 2:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height-3;
       }
       image(platformJump, platformX, platformY);
       break;
     case 3:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height-3;
+        playerX -= 2;
       }
       image(platformLeft, platformX, platformY);
       break;
     case 4:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height-3;
       }
       image(platformNail, platformX, platformY);
       break;
     case 5:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height-3;
+        playerX += 2;
       }
       image(platformRight, platformX, platformY);
       break;
     case 6:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height - 3;
       }
       image(platformTrue, platformX, platformY);
       break;
     default:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height;
+        playerY = platformY - playerDefault.height-3;
       }
       image(platformTrue, platformX, platformY);
       break;
