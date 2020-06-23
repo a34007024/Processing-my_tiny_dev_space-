@@ -1,6 +1,7 @@
 PImage wall, topNail, playerDefault, playerLeft, playerLeftRun, playerRight, playerRightRun;
 PImage platformFake, platformJump, platformLeft, platformLeft2, platformNail, platformRight, platformRight2, platformTrue;
-float playerX, playerY = 50, fallingSpeed = 3;
+PImage bg1,bg2,bg3;
+float playerX, playerY = 50, fallingSpeed = 3,platformYmovementSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
 boolean gameOver = false;
 int score = 0, playerHealth = 10, level = 1;
@@ -8,6 +9,9 @@ int r=0, g=0, b=0;
 int premillis;
 platform[] p = new platform[20];
 void setup() {
+  bg1 = loadImage("images/bg1.jpg");
+  bg2 = loadImage("images/bg2.jpg");
+  bg3 = loadImage("images/bg3.jpg");
   wall = loadImage("images/wall.png");
   topNail = loadImage("images/top-nail.png");
   playerDefault = loadImage("images/player-default.png");
@@ -44,7 +48,23 @@ void setup() {
 
 void draw() {
   if (!gameOver) {
-    background(r, g, b);
+    switch(level){
+      case 1:
+        background(r, g, b);
+        break;
+      case 2:
+        background(bg1);
+        break;
+      case 3:
+        background(bg2);
+        break;
+      case 4:
+        background(bg3);
+        break;
+      default:
+        background(bg3);
+        break;
+    }
     image(wall, 0, 0);
     image(wall, width-wall.width, 0);
     image(topNail, 0+wall.width, 0);
@@ -92,6 +112,9 @@ void keyPressed() {
   case 'R':
     setup();
     break;
+  case 'S':
+    saveFrame("line-###.png");
+    break;
   default:
     playerMoveRight = false;
     playerMoveLeft = false;
@@ -116,8 +139,11 @@ void printInfo() {
 void judgePlayerDead() {
   if (playerY >= height + playerDefault.height)playerHealth = 0;
   if (playerHealth <= 0) {
+    //background(100);
     textSize(50);
-    text("Game Over", 80, height/2);
+    text("Game Over", 80, height/2-50);
+    text("Pressed R", 80, height/2);
+    text("to Restart", 80, height/2 + 50);
     gameOver = true;
   }
 }

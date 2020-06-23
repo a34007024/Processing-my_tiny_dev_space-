@@ -35,7 +35,7 @@ class platform {
         framePassed += 1;
         if (framePassed > 15)playerCollideOnPlatform = true;
         if (!playerCollideOnPlatform) {
-          playerY = platformY - playerDefault.height-(level+1);
+          playerY = platformY - playerDefault.height-3;
           fallingSpeed = 0;
         }
       }
@@ -45,7 +45,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-(level+1);
+        playerY = platformY - playerDefault.height-3;
         fallingSpeed = 0;
         fallingSpeed = -9;
       }
@@ -58,7 +58,7 @@ class platform {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-(level+1);
+        playerY = platformY - playerDefault.height-3;
         fallingSpeed = 0;
         if (playerX > wall.width)playerX -= 2;
       }
@@ -87,7 +87,7 @@ class platform {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-(level+1);
+        playerY = platformY - playerDefault.height-3;
         fallingSpeed = 0;
         if (playerX + playerDefault.width < width-wall.width)playerX += 2;
       }
@@ -102,7 +102,7 @@ class platform {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height - (level+1);
+        playerY = platformY - playerDefault.height - 3;
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
@@ -115,12 +115,13 @@ class platform {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height - (level+1);
+        playerY = platformY - playerDefault.height - 3;
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
       break;
     }
-    platformY -= (level +1);//speed control by level
+    if(level < 2)platformY -= (level +1);//speed control by level
+    else platformY -= 3;
   }
 }
