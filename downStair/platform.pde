@@ -56,7 +56,8 @@ class platform {
         fallingSpeed = 0;
         if(playerX > wall.width)playerX -= 2;
       }
-      image(platformLeft, platformX, platformY);
+      if(frameCount%10<5)image(platformLeft, platformX, platformY);
+      else image(platformLeft2, platformX, platformY);
       break;
     case 4:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
@@ -79,7 +80,8 @@ class platform {
         fallingSpeed = 0;
         if(playerX + playerDefault.width < width-wall.width)playerX += 2;
       }
-      image(platformRight, platformX, platformY);
+      if(frameCount%10<5)image(platformRight, platformX, platformY);
+      else image(platformRight2, platformX, platformY);
       break;
     case 6:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
