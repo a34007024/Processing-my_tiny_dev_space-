@@ -35,7 +35,10 @@ void draw(){
   image(wall,0,0);
   image(wall,width-wall.width,0);
   image(topNail,0+wall.width,0);
-  
+  if(playerY < topNail.height){
+    playerHealth -= level;
+    playerY += playerDefault.height;
+  }
   if(playerMoveLeft){
     if(frameCount%10<=5)image(playerLeft,playerX,playerY);
     else image(playerLeftRun,playerX,playerY);
@@ -62,7 +65,7 @@ void draw(){
     playerY = mouseY;
   }
   
-  if(frameCount % 50 ==0)score += level;// score += level per 0.5 second
+  if(frameCount % 30 ==0)score += level;// score += level per 0.5 second
   if(score > 50 && score < 150)level = 2;
   else if(score > 150 && score < 300)level = 3;
   else if(score > 300)level = score/100;
@@ -94,10 +97,11 @@ void keyReleased(){
 
 void printInfo(){
   textSize(20);
-  text("Level :"+level,wall.width,33);
+  text("Time:"+millis()/1000+"."+millis()%1000+"s",wall.width,33);
   text("Health:"+playerHealth,wall.width,53);
   text("Score :"+score,wall.width,73);
-  
+  text("Level :"+level,wall.width,93);
+  text(keyCode,wall.width,113);
 }
 
 void judgePlayerDead(){
