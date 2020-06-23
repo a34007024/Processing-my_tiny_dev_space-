@@ -4,14 +4,14 @@ PImage bg1, bg2, bg3;
 PFont chFont;
 float playerX, playerY = 50, fallingSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
-boolean gameOver = false, gameStart = false;
+boolean gameOver = false, gameStart = false, cheatMode = false;
 int score = 0, playerHealth = 10, level = 1;
 int r=0, g=0, b=0;
 int premillis;
 platform[] p = new platform[20];
 void setup() {
   background(0);
-  chFont = createFont("kaiu.ttf",32);
+  chFont = createFont("kaiu.ttf", 32);
   bg1 = loadImage("images/bg1.jpg");
   bg2 = loadImage("images/bg2.jpg");
   bg3 = loadImage("images/bg3.jpg");
@@ -42,6 +42,7 @@ void setup() {
   r=0; 
   g=0; 
   b=0;
+  cheatMode = false;
   p[0] = new platform(6, width/2-platformTrue.width/2, height);
   //the start-up platform must be true platform and appear in the middle
   for (int i=1; i < p.length; i++) {
@@ -88,6 +89,10 @@ void draw() {
     } else {
       image(playerDefault, playerX, playerY);
     }
+    if (cheatMode == true) {
+      playerX = mouseX;
+      playerY = mouseY;
+    }
 
     for (int i=0; i < p.length; i++) {
       p[i].update();
@@ -122,9 +127,13 @@ void keyPressed() {
   case 'S':
     saveFrame("line-###.png");
     break;
+  case 'C':
+    cheatMode = !cheatMode;
+    break;
+  case 'N'://no background image
+    
+    break;
   default:
-    playerMoveRight = false;
-    playerMoveLeft = false;
     break;
   }
 }
@@ -158,10 +167,10 @@ void printDeadInfo() {
   background(100);
   textFont(chFont);
   textSize(50);
-  fill(255,255,0);
+  fill(255, 255, 0);
   text("Your Score :"+score, 30, height/2-150);
   text("Reach Level :"+level, 30, height/2-100);
-  fill(255,0,0);
+  fill(255, 0, 0);
   text("Game Over", 80, height/2-50);
   fill(255);
   text("Pressed R", 80, height/2);
