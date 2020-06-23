@@ -54,7 +54,7 @@ class platform {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
-        playerX -= 2;
+        if(playerX > wall.width)playerX -= 2;
       }
       image(platformLeft, platformX, platformY);
       break;
@@ -71,7 +71,7 @@ class platform {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
-        playerX += 2;
+        if(playerX + playerDefault.width < width-wall.width)playerX += 2;
       }
       image(platformRight, platformX, platformY);
       break;

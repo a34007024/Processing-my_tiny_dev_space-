@@ -18,12 +18,13 @@ void setup(){
   platformNail = loadImage("images/platform-nail.png");
   platformRight = loadImage("images/platform-right.png");
   platformTrue = loadImage("images/platform-true.png");
-  size(436,640);//topNail.width + wall.width*2
+  size(436,640,P2D);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
   p[0] = new platform(6,width/2-platformTrue.width/2,height);
   //the start-up platform must be true platform and appear in the middle
   for(int i=1;i < p.length;i++){
-    p[i] = new platform(height + i*120);
+    //p[i] = new platform(height + i*120);
+    p[i] = new platform(5,width-wall.width-platformRight.width,height + i*120);
   }
 }
 
@@ -54,7 +55,7 @@ void draw(){
   playerY += fallingSpeed;//falling down
   if(fallingSpeed < 9.8)fallingSpeed += 0.3;//simulate gravity(mabe OwO)
   
-  if(mousePressed){
+  if(mousePressed){//debug
     playerX = mouseX;
     playerY = mouseY;
   }
