@@ -2,7 +2,7 @@ PImage wall,topNail,playerDefault,playerLeft,playerLeftRun,playerRight,playerRig
 PImage platformFake,platformJump,platformLeft,platformNail,platformRight,platformTrue;
 float playerX ,playerY = 50,fallingSpeed = 3;
 boolean playerMoveLeft = false,playerMoveRight = false;
-int score = 0;
+int score = 0,playerHealth = 10,level = 1;
 platform[] p = new platform[20];
 void setup(){
   wall = loadImage("images/wall.png");
@@ -18,7 +18,7 @@ void setup(){
   platformNail = loadImage("images/platform-nail.png");
   platformRight = loadImage("images/platform-right.png");
   platformTrue = loadImage("images/platform-true.png");
-  size(436,640,P2D);//topNail.width + wall.width*2
+  size(436,640);//topNail.width + wall.width*2
   playerX = width/2-playerDefault.width/2;
   p[0] = new platform(6,width/2-platformTrue.width/2,height);
   //the start-up platform must be true platform and appear in the middle
@@ -52,7 +52,19 @@ void draw(){
     if(p[i].platformY <= -1750)p[i] = new platform();//renew the platform
   }
   playerY += fallingSpeed;//falling down
-  if(fallingSpeed < 9.8)fallingSpeed += 0.3;
+  if(fallingSpeed < 9.8)fallingSpeed += 0.3;//simulate gravity(mabe OwO)
+  
+  if(mousePressed){
+    playerX = mouseX;
+    playerY = mouseY;
+  }
+  
+  if(frameCount % 50 ==0)score += level;// score += level per 0.5 second
+  if(score > 50 && score < 150)level = 2;
+  else if(score > 150 && score < 300)level = 3;
+  else if(score > 300)level = score/100;
+  printInfo();
+  
 }
 
 void keyPressed(){
@@ -75,4 +87,12 @@ void keyPressed(){
 void keyReleased(){
   playerMoveRight = false;
   playerMoveLeft = false;
+}
+
+void printInfo(){
+  textSize(20);
+  text("Level :"+level,wall.width,33);
+  text("Health:"+playerHealth,wall.width,53);
+  text("Score :"+score,wall.width,73);
+  
 }

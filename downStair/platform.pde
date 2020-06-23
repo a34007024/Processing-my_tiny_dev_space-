@@ -34,7 +34,7 @@ class platform {
         framePassed += 1;
         if(framePassed > 15)playerCollideOnPlatform = true;
         if(!playerCollideOnPlatform){
-          playerY = platformY - playerDefault.height-3;
+          playerY = platformY - playerDefault.height-(level+1);
           fallingSpeed = 0;
         }
       }
@@ -43,7 +43,7 @@ class platform {
     case 2:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-3;
+        playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
         fallingSpeed = -9;
       }
@@ -52,7 +52,7 @@ class platform {
     case 3:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-3;
+        playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
         playerX -= 2;
       }
@@ -69,7 +69,7 @@ class platform {
     case 5:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-3;
+        playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
         playerX += 2;
       }
@@ -78,7 +78,7 @@ class platform {
     case 6:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height - 3;
+        playerY = platformY - playerDefault.height - (level+1);
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
@@ -86,12 +86,12 @@ class platform {
     default:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-3;
+        playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
       break;
     }
-    platformY -= 3;
+    platformY -= (level+1);
   }
 }
