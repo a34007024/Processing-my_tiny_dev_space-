@@ -1,14 +1,15 @@
 PImage wall, topNail, playerDefault, playerLeft, playerLeftRun, playerRight, playerRightRun;
 PImage platformFake, platformJump, platformLeft, platformLeft2, platformNail, platformRight, platformRight2, platformTrue;
-PImage bg1,bg2,bg3;
+PImage bg1, bg2, bg3;
 float playerX, playerY = 50, fallingSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
-boolean gameOver = false;
+boolean gameOver = false, gameStart = false;
 int score = 0, playerHealth = 10, level = 1;
 int r=0, g=0, b=0;
 int premillis;
 platform[] p = new platform[20];
 void setup() {
+  background(0);
   bg1 = loadImage("images/bg1.jpg");
   bg2 = loadImage("images/bg2.jpg");
   bg3 = loadImage("images/bg3.jpg");
@@ -36,7 +37,9 @@ void setup() {
   playerHealth = 10;
   gameOver = false;
   level = 1;
-  r=0; g=0; b=0;
+  r=0; 
+  g=0; 
+  b=0;
   p[0] = new platform(6, width/2-platformTrue.width/2, height);
   //the start-up platform must be true platform and appear in the middle
   for (int i=1; i < p.length; i++) {
@@ -47,23 +50,23 @@ void setup() {
 }
 
 void draw() {
-  if (!gameOver) {
-    switch(level){
-      case 1:
-        background(r, g, b);
-        break;
-      case 2:
-        background(bg1);
-        break;
-      case 3:
-        background(bg2);
-        break;
-      case 4:
-        background(bg3);
-        break;
-      default:
-        background(bg3);
-        break;
+  if (!gameOver && gameStart) {
+    switch(level) {
+    case 1:
+      background(r, g, b);
+      break;
+    case 2:
+      background(bg1);
+      break;
+    case 3:
+      background(bg2);
+      break;
+    case 4:
+      background(bg3);
+      break;
+    default:
+      background(bg3);
+      break;
     }
     image(wall, 0, 0);
     image(wall, width-wall.width, 0);
@@ -88,7 +91,7 @@ void draw() {
       p[i].update();
       if (p[i].platformY <= -1750)p[i] = new platform();//renew the platform
     }
-    
+
     playerY += fallingSpeed;//falling down
     if (fallingSpeed < 9.8)fallingSpeed += 0.3;//simulate gravity(mabe OwO)
 
@@ -96,7 +99,8 @@ void draw() {
     level = score/100 + 1;
     printInfo();
     judgePlayerDead();
-  }
+  } else if (gameOver && gameStart)printDeadInfo();
+  else printStartupInfo();
 }
 
 void keyPressed() {
@@ -111,6 +115,7 @@ void keyPressed() {
     break;
   case 'R':
     setup();
+    gameStart = true;
     break;
   case 'S':
     saveFrame("line-###.png");
@@ -129,8 +134,10 @@ void keyReleased() {
 
 void printInfo() {
   textSize(20);
+  fill(255);
   text("Time:"+ (millis()/1000 - premillis/1000) +"."+millis()%1000+"s", wall.width, 33);
-  text("Health:"+playerHealth, wall.width, 53);
+  fill(#FFFF00);
+  text("HP:"+playerHealth, wall.width, 53);
   text("Score :"+score, wall.width, 73);
   text("Level :"+level, wall.width, 93);
 }
@@ -138,13 +145,33 @@ void printInfo() {
 void judgePlayerDead() {
   if (playerY >= height + playerDefault.height)playerHealth = 0;
   if (playerHealth <= 0) {
-    //background(100);
-    textSize(50);
-    text("Game Over", 80, height/2-50);
-    text("Pressed R", 80, height/2);
-    text("to Restart", 80, height/2 + 50);
-    textSize(20);
-    text("Pressed S to save game image",80, height/2 + 70);
     gameOver = true;
   }
+}
+
+void printDeadInfo() {
+  background(100);
+  textSize(50);
+  fill(255,255,0);
+  text("Your Score :"+score, 30, height/2-150);
+  text("Reach Level :"+level, 30, height/2-100);
+  fill(255,0,0);
+  text("Game Over", 80, height/2-50);
+  fill(255);
+  text("Pressed R", 80, height/2);
+  text("to Restart", 80, height/2 + 50);
+  textSize(20);
+  text("Pressed S to save image", 80, height/2 + 70);
+  text("while playing", 80, height/2 + 90);
+}
+
+void printStartupInfo() {
+  background(0);
+  textSize(50);
+  text("~Welcome~", 80, height/3-50);
+  text("Press R to", 60, height/3);
+  text("Start Game", 60, height/3 + 50);
+  textSize(20);
+  text("You can pressed S to save", 60, height/3 + 70);
+  text("image during the game", 60, height/3 + 90);
 }
