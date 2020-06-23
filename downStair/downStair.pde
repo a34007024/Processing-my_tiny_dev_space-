@@ -1,6 +1,7 @@
 PImage wall, topNail, playerDefault, playerLeft, playerLeftRun, playerRight, playerRightRun;
 PImage platformFake, platformJump, platformLeft, platformLeft2, platformNail, platformRight, platformRight2, platformTrue;
 PImage bg1, bg2, bg3;
+PFont chFont;
 float playerX, playerY = 50, fallingSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
 boolean gameOver = false, gameStart = false;
@@ -10,6 +11,7 @@ int premillis;
 platform[] p = new platform[20];
 void setup() {
   background(0);
+  chFont = createFont("kaiu.ttf",32);
   bg1 = loadImage("images/bg1.jpg");
   bg2 = loadImage("images/bg2.jpg");
   bg3 = loadImage("images/bg3.jpg");
@@ -133,13 +135,16 @@ void keyReleased() {
 }
 
 void printInfo() {
+  textFont(chFont);
   textSize(20);
   fill(255);
   text("Time:"+ (millis()/1000 - premillis/1000) +"."+millis()%1000+"s", wall.width, 33);
+  textSize(30);
+  fill(#FF0000);
+  text("HP:"+playerHealth, wall.width, 63);
   fill(#FFFF00);
-  text("HP:"+playerHealth, wall.width, 53);
-  text("Score :"+score, wall.width, 73);
-  text("Level :"+level, wall.width, 93);
+  text("Score :"+score, wall.width, 93);
+  text("Level :"+level, wall.width, 123);
 }
 
 void judgePlayerDead() {
@@ -151,6 +156,7 @@ void judgePlayerDead() {
 
 void printDeadInfo() {
   background(100);
+  textFont(chFont);
   textSize(50);
   fill(255,255,0);
   text("Your Score :"+score, 30, height/2-150);
@@ -167,11 +173,18 @@ void printDeadInfo() {
 
 void printStartupInfo() {
   background(0);
+  textFont(chFont);
   textSize(50);
   text("~Welcome~", 80, height/3-50);
-  text("Press R to", 60, height/3);
-  text("Start Game", 60, height/3 + 50);
+  text("按R鍵以", 90, height/3);
+  text("開始遊戲", 90, height/3 + 50);
   textSize(20);
-  text("You can pressed S to save", 60, height/3 + 70);
-  text("image during the game", 60, height/3 + 90);
+  text("你可以在遊戲中按下S鍵", 90, height/3 + 80);
+  text("可以將遊戲的影像存檔!", 90, height/3 + 100);
+  textSize(30);
+  text("組員名單:", 120, height/2 + 30);
+  text("楊曜承", 150, height/2 + 60);
+  text("沈義哲", 150, height/2 + 90);
+  text("賴建良", 150, height/2 + 120);
+  text("游岳昇", 150, height/2 + 150);
 }
