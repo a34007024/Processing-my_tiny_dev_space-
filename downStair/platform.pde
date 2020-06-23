@@ -74,7 +74,7 @@ class platform {
         if (!playerCollideOnPlatform) {
           playerHealth -= level;//扣血量隨著level增加
         }
-        if (framePassed <= 3)r=255;
+        if (framePassed <= 1)r=255;//扣血時背景閃紅色
         else r = 0;
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height + 15;
