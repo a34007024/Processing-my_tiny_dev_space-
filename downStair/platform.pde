@@ -60,9 +60,15 @@ class platform {
       break;
     case 4:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
+        framePassed += 1;
+        if(!playerCollideOnPlatform){
+          playerHealth -= level;//扣血量隨著level增加
+        }
+        if(framePassed <= 3)r=255;else r = 0;
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height + 15;
         fallingSpeed = 0;
+        
       }
       image(platformNail, platformX, platformY);
       break;
@@ -77,16 +83,18 @@ class platform {
       break;
     case 6:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
+        if(!playerCollideOnPlatform) playerHealth += 1;//第一次踏上可回血
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height - (level+1);
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
       break;
-    default:
+    default://same as the case 6
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
+        if(!playerCollideOnPlatform) playerHealth += 1;//第一次踏上可回血
         playerCollideOnPlatform = true;
-        playerY = platformY - playerDefault.height-(level+1);
+        playerY = platformY - playerDefault.height - (level+1);
         fallingSpeed = 0;
       }
       image(platformTrue, platformX, platformY);
