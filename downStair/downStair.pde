@@ -3,6 +3,8 @@ PImage platformFake,platformJump,platformLeft,platformNail,platformRight,platfor
 float playerX ,playerY = 50,fallingSpeed = 3;
 boolean playerMoveLeft = false,playerMoveRight = false;
 int score = 0,playerHealth = 10,level = 1;
+int r=0,g=0,b=0;
+int premillis;
 platform[] p = new platform[20];
 void setup(){
   wall = loadImage("images/wall.png");
@@ -23,13 +25,13 @@ void setup(){
   p[0] = new platform(6,width/2-platformTrue.width/2,height);
   //the start-up platform must be true platform and appear in the middle
   for(int i=1;i < p.length;i++){
-    //p[i] = new platform(height + i*120);
-    p[i] = new platform(5,width-wall.width-platformRight.width,height + i*120);
+    p[i] = new platform(height + i*120);
+    //p[i] = new platform(5,width-wall.width-platformRight.width,height + i*120);
   }
 }
 
 void draw(){
-  background(0);
+  background(r,g,b);
   image(wall,0,0);
   image(wall,width-wall.width,0);
   image(topNail,0+wall.width,0);
@@ -65,7 +67,7 @@ void draw(){
   else if(score > 150 && score < 300)level = 3;
   else if(score > 300)level = score/100;
   printInfo();
-  
+  judgePlayerDead();
 }
 
 void keyPressed(){
@@ -96,4 +98,13 @@ void printInfo(){
   text("Health:"+playerHealth,wall.width,53);
   text("Score :"+score,wall.width,73);
   
+}
+
+void judgePlayerDead(){
+  if(playerY >= height + playerDefault.height)playerHealth = 0;
+  if(playerHealth <= 0){
+    textSize(50);
+    text("Game Over",80,height/2);
+    noLoop();
+  }
 }
