@@ -48,7 +48,7 @@ class platform {
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-platformYmovementSpeed;
         fallingSpeed = 0;
-        fallingSpeed = -9;
+        fallingSpeed = -(6+platformYmovementSpeed);
       }
       image(platformJump, platformX, platformY);
       break;
