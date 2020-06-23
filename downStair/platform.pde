@@ -14,14 +14,14 @@ class platform {
     platformX = random(wall.width, width-platformRight.width-wall.width);
     platformY = in_platformY;
   }
-  
-  platform(int in_platformType,float in_platformY) {
+
+  platform(int in_platformType, float in_platformY) {
     platformType = in_platformType;
     platformX = random(wall.width, width-platformRight.width-wall.width);
     platformY = in_platformY;
   }
-  
-  platform(int in_platformType,float in_platformX,float in_platformY) {
+
+  platform(int in_platformType, float in_platformX, float in_platformY) {
     platformType = in_platformType;
     platformX = in_platformX;
     platformY = in_platformY;
@@ -33,13 +33,13 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
         framePassed += 1;
-        if(framePassed > 15)playerCollideOnPlatform = true;
-        if(!playerCollideOnPlatform){
+        if (framePassed > 15)playerCollideOnPlatform = true;
+        if (!playerCollideOnPlatform) {
           playerY = platformY - playerDefault.height-(level+1);
           fallingSpeed = 0;
         }
       }
-      if(!playerCollideOnPlatform)image(platformFake, platformX, platformY);
+      if (!playerCollideOnPlatform)image(platformFake, platformX, platformY);
       break;
     case 2:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
@@ -54,51 +54,51 @@ class platform {
     case 3:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
-        if(!playerCollideOnPlatform){
+        if (!playerCollideOnPlatform) {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
-        if(playerX > wall.width)playerX -= 2;
+        if (playerX > wall.width)playerX -= 2;
       }
-      if(frameCount%20<10)image(platformLeft, platformX, platformY);
+      if (frameCount%20<10)image(platformLeft, platformX, platformY);
       else image(platformLeft2, platformX, platformY);
       break;
     case 4:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
         framePassed += 1;
-        if(!playerCollideOnPlatform){
+        if (!playerCollideOnPlatform) {
           playerHealth -= level;//扣血量隨著level增加
         }
-        if(framePassed <= 3)r=255;else r = 0;
+        if (framePassed <= 3)r=255;
+        else r = 0;
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height + 15;
         fallingSpeed = 0;
-        
       }
       image(platformNail, platformX, platformY);
       break;
     case 5:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
-        if(!playerCollideOnPlatform){
+        if (!playerCollideOnPlatform) {
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
         playerY = platformY - playerDefault.height-(level+1);
         fallingSpeed = 0;
-        if(playerX + playerDefault.width < width-wall.width)playerX += 2;
+        if (playerX + playerDefault.width < width-wall.width)playerX += 2;
       }
-      if(frameCount%20<10)image(platformRight, platformX, platformY);
+      if (frameCount%20<10)image(platformRight, platformX, platformY);
       else image(platformRight2, platformX, platformY);
       break;
     case 6:
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
-        if(!playerCollideOnPlatform){
-          playerHealth += 1;//第一次踏上可回血
+        if (!playerCollideOnPlatform) {
+          if (playerHealth < 10)playerHealth += 1;//第一次踏上可回血
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
@@ -110,8 +110,8 @@ class platform {
     default://same as the case 6
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
-        if(!playerCollideOnPlatform){
-          playerHealth += 1;//第一次踏上可回血
+        if (!playerCollideOnPlatform) {
+          if (playerHealth < 10)playerHealth += 1;//第一次踏上可回血
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
@@ -121,6 +121,6 @@ class platform {
       image(platformTrue, platformX, platformY);
       break;
     }
-    platformY -= (level+1);//speed control by level 
+    platformY -= (level +1);//speed control by level
   }
 }
