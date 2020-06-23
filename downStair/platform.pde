@@ -56,7 +56,7 @@ class platform {
         fallingSpeed = 0;
         if(playerX > wall.width)playerX -= 2;
       }
-      if(frameCount%10<5)image(platformLeft, platformX, platformY);
+      if(frameCount%20<10)image(platformLeft, platformX, platformY);
       else image(platformLeft2, platformX, platformY);
       break;
     case 4:
@@ -80,7 +80,7 @@ class platform {
         fallingSpeed = 0;
         if(playerX + playerDefault.width < width-wall.width)playerX += 2;
       }
-      if(frameCount%10<5)image(platformRight, platformX, platformY);
+      if(frameCount%20<10)image(platformRight, platformX, platformY);
       else image(platformRight2, platformX, platformY);
       break;
     case 6:
