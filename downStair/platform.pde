@@ -2,6 +2,7 @@ class platform {
   float platformX, platformY;
   int platformType;
   boolean playerCollideOnPlatform = false;
+  float platformYmovementSpeed = 0;
   int framePassed = 0;
   platform() {
     platformType = int(random(6));
@@ -55,6 +56,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
         if (!playerCollideOnPlatform) {
+          if (playerHealth < 10)playerHealth += 1;//第一次踏上可回血
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
@@ -84,6 +86,7 @@ class platform {
       if (playerX+playerDefault.width > platformX && playerX < platformX + platformTrue.width && playerY + playerDefault.height >= platformY && platformY > 0 && platformY > playerY) {
         //judge if player is standing on platform
         if (!playerCollideOnPlatform) {
+          if (playerHealth < 10)playerHealth += 1;//第一次踏上可回血
           score += 10;//第一次踏上可加分
         }
         playerCollideOnPlatform = true;
@@ -121,7 +124,8 @@ class platform {
       image(platformTrue, platformX, platformY);
       break;
     }
-    if(level < 2)platformY -= (level +1);//speed control by level
-    else platformY -= 3;
+    if(level < 2)platformYmovementSpeed = (level +1);//speed control by level
+    else platformYmovementSpeed = 3;//level 2後速度不再增加
+    platformY -= platformYmovementSpeed;
   }
 }

@@ -1,7 +1,7 @@
 PImage wall, topNail, playerDefault, playerLeft, playerLeftRun, playerRight, playerRightRun;
 PImage platformFake, platformJump, platformLeft, platformLeft2, platformNail, platformRight, platformRight2, platformTrue;
 PImage bg1,bg2,bg3;
-float playerX, playerY = 50, fallingSpeed = 3,platformYmovementSpeed = 3;
+float playerX, playerY = 50, fallingSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
 boolean gameOver = false;
 int score = 0, playerHealth = 10, level = 1;
@@ -133,7 +133,6 @@ void printInfo() {
   text("Health:"+playerHealth, wall.width, 53);
   text("Score :"+score, wall.width, 73);
   text("Level :"+level, wall.width, 93);
-  text(keyCode, wall.width, 113);
 }
 
 void judgePlayerDead() {
@@ -144,6 +143,8 @@ void judgePlayerDead() {
     text("Game Over", 80, height/2-50);
     text("Pressed R", 80, height/2);
     text("to Restart", 80, height/2 + 50);
+    textSize(20);
+    text("Pressed S to save game image",80, height/2 + 70);
     gameOver = true;
   }
 }
