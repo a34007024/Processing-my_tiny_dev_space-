@@ -4,7 +4,7 @@ PImage bg1, bg2, bg3;
 PFont chFont;
 float playerX, playerY = 50, fallingSpeed = 3;
 boolean playerMoveLeft = false, playerMoveRight = false;
-boolean gameOver = false, gameStart = false, cheatMode = false;
+boolean gameOver = false, gameStart = false, cheatMode = false, enableBGImage = true;
 int score = 0, playerHealth = 10, level = 1;
 int r=0, g=0, b=0;
 int premillis;
@@ -43,6 +43,7 @@ void setup() {
   g=0; 
   b=0;
   cheatMode = false;
+  enableBGImage = true;
   p[0] = new platform(6, width/2-platformTrue.width/2, height);
   //the start-up platform must be true platform and appear in the middle
   for (int i=1; i < p.length; i++) {
@@ -54,23 +55,25 @@ void setup() {
 
 void draw() {
   if (!gameOver && gameStart) {
-    switch(level) {
-    case 1:
-      background(r, g, b);
-      break;
-    case 2:
-      background(bg1);
-      break;
-    case 3:
-      background(bg2);
-      break;
-    case 4:
-      background(bg3);
-      break;
-    default:
-      background(bg3);
-      break;
-    }
+    if (enableBGImage) {
+      switch(level) {
+      case 1:
+        background(r, g, b);
+        break;
+      case 2:
+        background(bg1);
+        break;
+      case 3:
+        background(bg2);
+        break;
+      case 4:
+        background(bg3);
+        break;
+      default:
+        background(bg3);
+        break;
+      }
+    }else background(r, g, b);
     image(wall, 0, 0);
     image(wall, width-wall.width, 0);
     image(topNail, 0+wall.width, 0);
@@ -131,7 +134,7 @@ void keyPressed() {
     cheatMode = !cheatMode;
     break;
   case 'N'://no background image
-    
+    enableBGImage = !enableBGImage;
     break;
   default:
     break;
